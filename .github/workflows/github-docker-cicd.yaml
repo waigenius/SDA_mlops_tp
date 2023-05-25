@@ -6,7 +6,9 @@ env:
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   REPO_NAME: ${{secrets.REPO_NAME}}
 
-
+# Event Triggers:
+# The pipeline is triggered whenever there is a push to the main branch.
+# It is also triggered whenever there is a pull request to the main branch.
 
 on:
   push:
@@ -16,41 +18,44 @@ on:
     branches:
     - main
 
-
+# this pipeline consists of a two jobs named ci_pipeline
 
 jobs:
 
 
   ci_pipeline: 
-       runs-on: ubuntu-latest  
+       runs-on: ubuntu-latest     # The job runs on the ubuntu-latest operating system
        
        steps:
-        - uses: actions/checkout@v1
+        - uses: actions/checkout@v1 
           with:
             fetch-depth: 0
-
+#The first step uses the actions/checkout@v1 action to clone the repository.
+#The fetch-depth: 0 parameter ensures that the complete commit history is fetched.
 
         - name: Set up Python 3.9
           uses: actions/setup-python@v1
           with:
             python-version: 3.9
-
+#The second step sets up Python 3.9 by using the actions/setup-python@v1 action.
+#The python-version: 3.9 parameter specifies the desired Python version.
 
         - name: Install dependencies
           run: |
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+# The third step installs the project dependencies.
 
         - name: Format
           run: |
             black app.py
-
+# The fourth step formats the app.py file using the black code formatter.
 
         - name: Lint
           run: |
             pylint --disable=R,C  app.py
-
+#The fifth step performs linting on the app.py file using pylint.
+#The --disable=R,C flag disables specific pylint checks.
 
         - name: Test
           run: |
