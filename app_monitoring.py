@@ -75,17 +75,11 @@ def predict():
             "actual_label": [actual_label]             
         }
         dataframe = pd.DataFrame(data)
-
-        # Debug prints
-        print("DataFrame:")
-        print(dataframe)
-        print("Schema:")
-        print(schema)
         
         try: 
             response = arize_client.log(
                 dataframe = dataframe,
-                model_id="your_model_id",
+                model_id="Catboost_model",
                 model_version="v1",
                 model_type=ModelTypes.SCORE_CATEGORICAL,
                 environment=Environments.PRODUCTION,
