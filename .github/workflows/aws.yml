@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: eu-west-3               # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-north-1              # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: waigenuis/mlops_tp         # set this to your Amazon ECR repository name
   ECS_SERVICE: mlops-catboost-service-ygxkv607                # set this to your Amazon ECS service name
   ECS_CLUSTER: mlopsClusteR                # set this to your Amazon ECS cluster name
@@ -33,7 +33,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-west-3
+        aws-region: eu-north-1
 
     - name: Login to Amazon ECR
       id: login-ecr
