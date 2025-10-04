@@ -1,6 +1,6 @@
 name: Github-Docker Hub MLOps pipeline - Kamila
 
-
+# Les variables d'environnement
 env:
   DOCKER_USER: ${{secrets.DOCKER_USER}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
@@ -9,7 +9,8 @@ env:
 # Event Triggers:
 # The pipeline is triggered whenever there is a push to the main branch.
 # It is also triggered whenever there is a pull request to the main branch
-
+# Le declenchement se fera lorsqu'il y 
+# aura une action "push" ou "pull_request" depuis la branche main
 on:
   push:
     branches:
